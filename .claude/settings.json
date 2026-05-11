@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(go vet *)",
+      "Bash(./bin/gosqlbackup init *)",
+      "Read(//tmp/**)",
+      "Bash(rm /tmp/test-gosqlbackup.env)",
+      "Bash(make build *)",
+      "Bash(chmod 600 /tmp/gosqlbackup-tamy.env)",
+      "Bash(./bin/gosqlbackup --config /tmp/gosqlbackup-tamy.env list-tables)",
+      "Bash(docker exec *)",
+      "Bash(echo \"exit=$?\")",
+      "Bash(PGPASSWORD=tamy psql -h localhost -p 5432 -U tamy -d tamy -tAc \"SELECT count\\(*\\) FROM \\\\\"PERMISSION\\\\\"\")",
+      "Bash(./bin/gosqlbackup --config /tmp/gosqlbackup-tamy.env backup --table PERMISSION --output-dir /tmp/gosqlbackup-out --workers 2)",
+      "Bash(go run *)",
+      "Bash(./bin/gosqlbackup --config /tmp/gosqlbackup-tamy.env backup --tables PERMISSION,ROLE,AGENT_RUN,PAYMENT_METHOD --output-dir /tmp/gosqlbackup-out --workers 2 --table-concurrency 2)",
+      "Bash(time ./bin/gosqlbackup --config /tmp/gosqlbackup-tamy.env backup --table SALES_ORDER --output-dir /tmp/gosqlbackup-out --workers 6)",
+      "Bash(chmod 600 /tmp/gosqlbackup-tamy.env && mkdir -p /home/zangetsulnx/stress-test && df -h /home/zangetsulnx 2>&1 | head -2)",
+      "Bash(/usr/bin/time -f \"wall=%E rss_max=%MK cpu=%P\" ./bin/gosqlbackup --config /tmp/gosqlbackup-tamy.env backup --table stress_test --workers 4 --batch-size 3000 --output-dir /home/zangetsulnx/stress-test/run1)",
+      "Bash(/usr/bin/time -f \"wall=%E rss_max=%MK cpu=%P\" ./bin/gosqlbackup --config /tmp/gosqlbackup-tamy.env backup --table stress_test --workers 8 --batch-size 3000 --output-dir /home/zangetsulnx/stress-test/run2)",
+      "Bash(/usr/bin/time -f \"wall=%E rss_max=%MK cpu=%P\" ./bin/gosqlbackup --config /tmp/gosqlbackup-tamy.env backup --table stress_test --workers 12 --batch-size 3000 --output-dir /home/zangetsulnx/stress-test/run3)",
+      "Bash(/usr/bin/time -f \"wall=%E rss_max=%MK cpu=%P\" ./bin/gosqlbackup --config /tmp/gosqlbackup-tamy.env backup --table stress_test --workers 12 --batch-size 10000 --output-dir /home/zangetsulnx/stress-test/run4)",
+      "Bash(/usr/bin/time -f \"wall=%E rss_max=%MK cpu=%P\" ./bin/gosqlbackup --config /tmp/gosqlbackup-tamy.env backup --table stress_test --workers 4 --batch-size 10000 --output-dir /home/zangetsulnx/stress-test/run5)"
+    ],
+    "additionalDirectories": [
+      "/tmp",
+      "/home/zangetsulnx"
+    ]
+  }
+}

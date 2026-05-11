@@ -1,0 +1,22 @@
+# Env files
+.env
+.env.local
+
+# Build artifacts
+bin/
+dist/
+
+# Backup outputs
+backups/
+*.sql
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Go
+*.test
+*.out
+coverage.txt
